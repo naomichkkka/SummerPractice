@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ROT13</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>ROT13</h1>
+    <div class="container">
+        <div class="column">
+            <label for="inputText">Before:</label>
+            <textarea id="inputText" class="text1" placeholder="Enter your text..."></textarea>
+            <button onclick="handleDecode()">Decipher</button>
+        </div>
+
+        <div class="column">
+            <label for="outputText">After:</label>
+            <textarea id="outputText" class="text2" readonly placeholder="The result will be here..."></textarea>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
