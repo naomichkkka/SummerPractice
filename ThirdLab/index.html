@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Catalog</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Products Catalog</h1>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Найдите товар:">
+                <button id="searchBtn">Поиск</button>
+            </div>
+            
+        </header>
+        <div id="productList" class="products-grid"></div>
+        
+        <div id="singleProduct" class="single-product" style="display: none;">
+            <button id="backBtn" class="btn">Вернутся к продуктам</button>
+            <div class="product-details"></div>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>

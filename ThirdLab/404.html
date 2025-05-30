@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Ошибка 404</title>
+<style>
+  body {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 40px;
+    overflow-x: hidden;
+    position: relative;
+  }
+  h1 {
+    font-size: 48px;
+    font-weight: bold;
+    text-shadow:
+      0 0 5px #aaa,
+      0 0 10px #aaa,
+      0 0 15px #aaa;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
+  }
+  p {
+    font-size: 24px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 10;
+  }
+  video {
+    width: 100%;
+    max-width: 720px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.3);
+    position: relative;
+    z-index: 10;
+  }
+  .emoji {
+    position: fixed;
+    top: -30px;
+    font-size: 24px;
+    pointer-events: none;
+    user-select: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  @keyframes fall {
+    to {
+      transform: translateY(110vh);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Ошибка 404</h1>
+<p>Ты попал не туда... но мы тебя всё равно не оставим!</p>
+
+<video controls autoplay muted loop>
+  <source src="/assets/klip.mp4" type="video/mp4" />
+  Ваш браузер не поддерживает видео 😢
+</video>
+
+<script>
+  const emojis = ['😭', '😢', '🥲', '😿', '💧'];
+
+  function createEmoji() {
+    const emoji = document.createElement('div');
+    emoji.className = 'emoji';
+    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.style.left = Math.random() * 100 + 'vw';
+    emoji.style.fontSize = (16 + Math.random() * 36) + 'px';
+    emoji.style.animationDuration = (3 + Math.random() * 5) + 's';
+    document.body.appendChild(emoji);
+  }
+
+  // смайлики с интервалом
+  setInterval(createEmoji, 100);
+</script>
+
+</body>
+</html>
