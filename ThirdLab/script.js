@@ -61,20 +61,39 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'product-card';
             card.innerHTML = `
                 <img src="${item.thumbnail}" alt="${item.title}" />
-                <div>
-                    <h3>${item.title}</h3>
-                    <p>$${item.price}</p>
+                <div class="product-info">
+                    <h3 class="product-title">${item.title}</h3>
+                    <p class="product-price">$${item.price}</p>
+                    <button class="product-action-btn" data-product-id="${item.id}">
+                        <span class="action-arrow">→</span>
+                    </button>
                 </div>
             `;
-            card.addEventListener('click', () => {
-                productsContainer.style.display = 'none';
-                detailView.style.display = 'block';
-                loadProductDetail(item.id);
-            });
             productsContainer.appendChild(card);
         });
 
+        document.querySelectorAll('.product-action-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const productId = btn.getAttribute('data-product-id');
+                openProductDetail(productId);
+            });
+        });
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const productId = card.querySelector('.product-action-btn').getAttribute('data-product-id');
+                openProductDetail(productId);
+            });
+        });
+
         renderPaginator();
+    }
+
+    function openProductDetail(productId) {
+        productsContainer.style.display = 'none';
+        detailView.style.display = 'block';
+        loadProductDetail(productId);
     }
 
     function renderPaginator() {
@@ -102,14 +121,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderProductDetail(item) {
         detailContent.innerHTML = `
-            <h2>${item.title}</h2>
-            <img src="${item.thumbnail}" alt="${item.title}" />
-            <p><strong>Brand:</strong> ${item.brand}</p>
-            <p><strong>Category:</strong> ${item.category}</p>
-            <p><strong>Price:</strong> $${item.price}</p>
-            <p><strong>Discount:</strong> ${item.discountPercentage}%</p>
-            <p><strong>Stock:</strong> ${item.stock}</p>
-            <p><strong>Description:</strong> ${item.description}</p>
+            <div class="detail-header">
+                <h2>${item.title}</h2>
+            </div>
+            <img src="${item.thumbnail}" alt="${item.title}" class="detail-main-image" />
+            <div class="detail-info">
+                <p><strong>Brand:</strong> ${item.brand}</p>
+                <p><strong>Category:</strong> ${item.category}</p>
+                <p><strong>Price:</strong> $${item.price}</p>
+                <p><strong>Discount:</strong> ${item.discountPercentage}%</p>
+                <p><strong>Stock:</strong> ${item.stock}</p>
+                <p><strong>Description:</strong> ${item.description}</p>
+            </div>
             <div class="product-gallery">
                 ${item.images.map(img => `<img src="${img}" alt="${item.title}" />`).join('')}
             </div>
